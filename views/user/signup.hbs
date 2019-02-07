@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <div class="row no-gutter">
+    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image">
+    	<img src="/images/login.bmp">
+    </div>
+    <div class="col-md-8 col-lg-6">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <div class="card-body">
+            <h5 class="card-title text-center">Register</h5>
+             {{#if hasErrors}}
+            <div class="alert alert-danger">
+                {{# each messages }}
+                <p>{{this}}</p>
+                {{/each}}
+            </div>
+            {{/if}}
+            <form class="form-signin" action="/user/signup" method="post">
+              <div class="form-label-group">
+                <input type="text" id="inputUserame" class="form-control" placeholder="Username" required autofocus>
+                <label for="inputUserame">Username</label>
+              </div>
+
+              <div class="form-label-group">
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required>
+                <label for="email">Email address</label>
+              </div>
+              
+              <hr>
+
+              <div class="form-label-group">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                <label for="password">Password</label>
+              </div>
+              
+              <div class="form-label-group">
+                <input type="password" id="inputConfirmPassword" class="form-control" placeholder="Password" required>
+                <label for="inputConfirmPassword">Confirm password</label>
+              </div>
+                <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" data-toggle="modal">Register</button>
+              
+              <a class="d-block text-center mt-2 small" href="login.html">Sign In</a>
+              <hr class="my-4">
+              <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign up with Google</button>
+              <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign up with Facebook</button>
+            </form>
+          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
