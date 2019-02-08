@@ -39,7 +39,7 @@ router.get('/reduce/:id', function(req, res, next) {
 
     cart.reduceByOne(productId);
     req.session.cart = cart;
-    res.redirect('/shopping-cart');
+    res.redirect('/about');
 });
 
 router.get('/remove/:id', function(req, res, next) {
@@ -48,20 +48,20 @@ router.get('/remove/:id', function(req, res, next) {
 
     cart.removeItem(productId);
     req.session.cart = cart;
-    res.redirect('/shopping-cart');
+    res.redirect('/about');
 });
 
-router.get('/shopping-cart', function(req, res, next) {
+router.get('/about', function(req, res, next) {
    if (!req.session.cart) {
-       return res.render('shop/shopping-cart', {products: null});
+       return res.render('shop/about', {products: null});
    } 
     var cart = new Cart(req.session.cart);
-    res.render('shop/shopping-cart', {products: cart.generateArray(), totalPrice: cart.totalPrice});
+    res.render('shop/about', {products: cart.generateArray(), totalPrice: cart.totalPrice});
 });
 
 router.get('/checkout', isLoggedIn, function(req, res, next) {
     if (!req.session.cart) {
-        return res.redirect('/shopping-cart');
+        return res.redirect('/about');
     }
     var cart = new Cart(req.session.cart);
     var errMsg = req.flash('error')[0];
@@ -70,7 +70,7 @@ router.get('/checkout', isLoggedIn, function(req, res, next) {
 
 router.post('/checkout', isLoggedIn, function(req, res, next) {
     if (!req.session.cart) {
-        return res.redirect('/shopping-cart');
+        return res.redirect('/about');
     }
     var cart = new Cart(req.session.cart);
     
